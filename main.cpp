@@ -53,7 +53,7 @@ int main() {
                 cout << "Enter HP: "; cin >> hp;
                 cout << "Enter Power: "; cin >> pwr;
                 Hero* newHero = new Hero(name, hp, pwr);
-                heapHeroes[heroCount++] = newHero;   // adding hero to the array that we will use to delete all heroes
+                if(heroCount < maxCapacity) heapHeroes[heroCount++] = newHero;   // adding hero to the array that we will use to delete all heroes + avoiding heroes above array's max capacity
                 guild += newHero;         // adding the hero to the guild
                 cout << GREEN << newHero->getName() << "joined the guild!" << RESET << endl;
                 break;
@@ -66,7 +66,7 @@ int main() {
                 cout << "Enter Armor Rating: "; cin >> armor;
                 Warrior* newWarrior = new Warrior(name, hp, pwr, armor);
                 guild += newWarrior;
-                heapHeroes[heroCount++] = newWarrior;
+                if(heroCount < maxCapacity) heapHeroes[heroCount++] = newWarrior;
                 cout << GREEN << newWarrior->getName() << " joined the guild!" << RESET << endl;
                 break;
             }
@@ -79,7 +79,7 @@ int main() {
                 cout << "Enter Charge Bonus: "; cin >> bonus;
                 Knight* newKnight = new Knight(name, hp ,pwr, armor, bonus);
                 guild += newKnight;
-                heapHeroes[heroCount++] = newKnight;
+                if(heroCount < maxCapacity) heapHeroes[heroCount++] = newKnight;
                 cout << GREEN << newKnight->getName() << "joined the guild!" << RESET << endl;
                 break;
             }
@@ -93,7 +93,7 @@ int main() {
                 cout << "Enter Mana: "; cin >> mana;
                 Spellblade* newSpellblade = new Spellblade(name, hp ,pwr, armor, mana, spellPWR);
                 guild += newSpellblade;
-                heapHeroes[heroCount++] = newSpellblade;
+                if(heroCount < maxCapacity) heapHeroes[heroCount++] = newSpellblade;
                 cout << GREEN << newSpellblade->getName() << "joined the guild!" << RESET << endl;
                 break;
             }
@@ -177,6 +177,8 @@ int main() {
 
         }
     }while(!exit);
+    
+    for(int i = 0; i < heroCount; i++) delete heapHeroes[i];        // deleting all the heroes on heap
 
     cout << GREEN << "PROGRAM TERMINATED!" << RESET <<endl;
 
