@@ -42,7 +42,7 @@ void Guild::operator+=(Hero* h) {
 // operator overloading for output streams <<           ostream type operator overloaders need to be friended
 ostream& operator<<(ostream& os, Guild &g) {
     os << "Guild: " << g.guildName << endl;
-    os << "Members: " << g.memberCount << endl;
+    os << "Members: " << g.memberCount << endl;                     // couldnt use color codes or make a custom format for this because the test cases for this are TOO specific
     for(int i = 0; i < g.memberCount; i++) {
         os << "- " << g.roster[i]->getName() << " (Power: " << g.roster[i]->getPower() << ")" << endl;
     }
